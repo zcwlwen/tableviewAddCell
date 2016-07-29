@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "barrageCell.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,7 +33,7 @@
 }
 
 - (void)setUI{
-    _testTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 200, 400) style:UITableViewStylePlain];
+    _testTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, 200, 360) style:UITableViewStylePlain];
     _testTable.backgroundColor = [UIColor clearColor];
     _testTable.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    _testTable.contentOffset = CGPointMake(CGFLOAT_MAX, CGFLOAT_MAX); 
@@ -41,10 +42,13 @@
     _testTable.dataSource = self;
     
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    addBtn.frame = CGRectMake(200, 200, 40, 20);
-    [addBtn setTitle:@"添加" forState:UIControlStateNormal];
+    addBtn.frame = CGRectMake(220, 300, 100, 40);
+    addBtn.layer.cornerRadius = 10;
+    [addBtn setTitle:@"发送弹幕" forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
-    addBtn.backgroundColor = [UIColor greenColor];
+    addBtn.backgroundColor = [UIColor darkGrayColor];
+    addBtn.tintColor = [UIColor whiteColor];
+    
     [self.view addSubview:addBtn];
 }
 
@@ -74,18 +78,20 @@
     return _dataArray1.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  40;
+    return  45;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    barrageCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        cell = [[barrageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     
-     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = _dataArray1[indexPath.row];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.cellBackGroundImage.image = [UIImage imageNamed:@"barrageBG"];
+    cell.cellAvatorImage.image = [UIImage imageNamed:@"avator"];
+    cell.barrageText.text = [NSString stringWithFormat:@"这是测试弹幕数据：%@",_dataArray1[indexPath.row]];
     return cell;
 }
 

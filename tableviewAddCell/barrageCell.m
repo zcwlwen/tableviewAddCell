@@ -10,7 +10,6 @@
 
 @implementation barrageCell
 
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
@@ -44,15 +43,17 @@
 -(UILabel *)barrageText{
     if (!_barrageText) {
         _barrageText = [[UILabel alloc]init];
+        _barrageText.textColor = [UIColor whiteColor];
+        _barrageText.font = [UIFont systemFontOfSize:12];
     }
     return _barrageText;
 }
 #pragma mark - 布局
 - (void)layoutSubviews{
     [super layoutSubviews];
-    self.cellBackGroundImage.frame  = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height);
+    self.cellBackGroundImage.frame  = CGRectMake(0, 0, self.contentView.frame.size.width,40);
     self.cellAvatorImage.frame = CGRectMake(5, 5, 30, 30);
-    self.barrageText.frame = CGRectMake(40, 5, 30, 30);
+    self.barrageText.frame = CGRectMake(40, 5, self.contentView.frame.size.width-10, 30);
 }
 
 - (void)awakeFromNib {
