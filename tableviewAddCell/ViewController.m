@@ -8,8 +8,11 @@
 
 #import "ViewController.h"
 #import "barrageCell.h"
+#import "DMHeartFlyView.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, assign)CGFloat heartSize;
 
 
 @property (nonatomic,strong)UITableView *testTable;
@@ -50,6 +53,39 @@
     addBtn.tintColor = [UIColor whiteColor];
     
     [self.view addSubview:addBtn];
+    
+    // 点赞
+    UIButton * heartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    heartBtn.frame = CGRectMake(36, [UIScreen mainScreen].bounds.size.height - 36 - 10, 36, 36);
+    [heartBtn setImage:[UIImage imageNamed:@"icon_heart"] forState:UIControlStateNormal];
+    [heartBtn addTarget:self action:@selector(showTheLove:) forControlEvents:UIControlEventTouchUpInside];
+    heartBtn.layer.shadowColor = [UIColor blackColor].CGColor;
+    heartBtn.layer.shadowOffset = CGSizeMake(0, 0);
+    heartBtn.layer.shadowOpacity = 0.5;
+    heartBtn.layer.shadowRadius = 1;
+    heartBtn.adjustsImageWhenHighlighted = NO;
+    [self.view addSubview:heartBtn];
+}
+
+-(void)showTheLove:(UIButton *)sender{
+    
+    _heartSize = 36;
+    
+    DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
+    [self.view addSubview:heart];
+    //设置点赞源 的位置
+    CGPoint fountainSource = CGPointMake(_heartSize + _heartSize/2.0, self.view.bounds.size.height - _heartSize/2.0 - 10);
+    heart.center = fountainSource;
+    [heart animateInView:self.view];
+    
+    // button点击动画
+    CAKeyframeAnimation *btnAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    btnAnimation.values = @[@(1.0),@(0.7),@(0.5),@(0.3),@(0.5),@(0.7),@(1.0), @(1.2), @(1.4), @(1.2), @(1.0)];
+    btnAnimation.keyTimes = @[@(0.0),@(0.1),@(0.2),@(0.3),@(0.4),@(0.5),@(0.6),@(0.7),@(0.8),@(0.9),@(1.0)];
+    btnAnimation.calculationMode = kCAAnimationLinear;
+    btnAnimation.duration = 0.3;
+    [sender.layer addAnimation:btnAnimation forKey:@"SHOW"];
+    
 }
 
 - (void)add{
