@@ -13,6 +13,8 @@
 		243E59EE1D48A94200416DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243E59EC1D48A94200416DE6 /* Main.storyboard */; };
 		243E59F01D48A94200416DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 243E59EF1D48A94200416DE6 /* Assets.xcassets */; };
 		243E59F31D48A94200416DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243E59F11D48A94200416DE6 /* LaunchScreen.storyboard */; };
+		243E59FC1D48AC0C00416DE6 /* ZCWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 243E59FB1D48AC0C00416DE6 /* ZCWTableViewCell.m */; };
+		243E5A071D4AF3E000416DE6 /* barrageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 243E5A061D4AF3E000416DE6 /* barrageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		243E59EF1D48A94200416DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		243E59F21D48A94200416DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		243E59F41D48A94200416DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		243E59FA1D48AC0C00416DE6 /* ZCWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCWTableViewCell.h; sourceTree = "<group>"; };
+		243E59FB1D48AC0C00416DE6 /* ZCWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCWTableViewCell.m; sourceTree = "<group>"; };
+		243E5A051D4AF3E000416DE6 /* barrageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barrageCell.h; sourceTree = "<group>"; };
+		243E5A061D4AF3E000416DE6 /* barrageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barrageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +68,14 @@
 				243E59E71D48A94200416DE6 /* AppDelegate.m */,
 				243E59E91D48A94200416DE6 /* ViewController.h */,
 				243E59EA1D48A94200416DE6 /* ViewController.m */,
+				243E5A051D4AF3E000416DE6 /* barrageCell.h */,
+				243E5A061D4AF3E000416DE6 /* barrageCell.m */,
 				243E59EC1D48A94200416DE6 /* Main.storyboard */,
 				243E59EF1D48A94200416DE6 /* Assets.xcassets */,
 				243E59F11D48A94200416DE6 /* LaunchScreen.storyboard */,
 				243E59F41D48A94200416DE6 /* Info.plist */,
+				243E59FA1D48AC0C00416DE6 /* ZCWTableViewCell.h */,
+				243E59FB1D48AC0C00416DE6 /* ZCWTableViewCell.m */,
 				243E59E31D48A94200416DE6 /* Supporting Files */,
 			);
 			path = tableviewAddCell;
@@ -149,6 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243E59FC1D48AC0C00416DE6 /* ZCWTableViewCell.m in Sources */,
+				243E5A071D4AF3E000416DE6 /* barrageCell.m in Sources */,
 				243E59EB1D48A94200416DE6 /* ViewController.m in Sources */,
 				243E59E81D48A94200416DE6 /* AppDelegate.m in Sources */,
 				243E59E51D48A94200416DE6 /* main.m in Sources */,
