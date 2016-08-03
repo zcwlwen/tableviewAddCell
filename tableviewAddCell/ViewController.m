@@ -185,6 +185,7 @@
     
     [textField resignFirstResponder];
     hello = commentText.text;
+    commentText.text = @"";
     NSLog(@"%@",hello);
     [self add];
     return YES;
