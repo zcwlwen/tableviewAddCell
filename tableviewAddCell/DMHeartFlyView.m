@@ -124,7 +124,6 @@ static CGFloat PI = M_PI;
 -(void)drawHeartInRect:(CGRect)rect{
     [_strokeColor setStroke];
     [_fillColor setFill];
-    
     CGFloat drawingPadding = 4.0;
     CGFloat curveRadius = floor((CGRectGetWidth(rect) - 2*drawingPadding) / 4.0);
     

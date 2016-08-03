@@ -10,10 +10,15 @@
 #import "barrageCell.h"
 #import "DMHeartFlyView.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+#define kWindowH [UIScreen mainScreen].bounds.size.height
+#define kWindowW [UIScreen mainScreen].bounds.size.width
+
+#define kStatusH [[UIApplication sharedApplication] statusBarFrame].size.height//状态栏高度
+#define kNavH  self.navigationController.navigationBar.frame.size.height//导航栏高度
+
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic, assign)CGFloat heartSize;
-
 
 @property (nonatomic,strong)UITableView *testTable;
 @property (nonatomic,strong)NSMutableArray *dataArray1;
@@ -22,6 +27,10 @@
 
 @implementation ViewController{
     int index;
+    UIView *commentsView;
+    UITextField *commentText;
+    
+    NSString *hello;
 }
 
 - (void)viewDidLoad {
@@ -54,6 +63,14 @@
     
     [self.view addSubview:addBtn];
     
+    UIButton *textViewBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    textViewBtn.frame = CGRectMake(220, 400, 100, 40);
+    textViewBtn.layer.cornerRadius = 10;
+    [textViewBtn setTitle:@"键盘" forState:UIControlStateNormal];
+    [textViewBtn addTarget:self action:@selector(handleClickComment:) forControlEvents:UIControlEventTouchUpInside];
+    textViewBtn.backgroundColor = [UIColor darkGrayColor];
+    textViewBtn.tintColor = [UIColor whiteColor];
+    [self.view addSubview:textViewBtn];
     // 点赞
     UIButton * heartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     heartBtn.frame = CGRectMake(36, [UIScreen mainScreen].bounds.size.height - 36 - 10, 36, 36);
@@ -68,9 +85,7 @@
 }
 
 -(void)showTheLove:(UIButton *)sender{
-    
     _heartSize = 36;
-    
     DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
     [self.view addSubview:heart];
     //设置点赞源 的位置
@@ -90,7 +105,7 @@
 
 - (void)add{
     
-    [_dataArray1 addObject:[NSString stringWithFormat:@"%d",index++]];
+    [_dataArray1 addObject:[NSString stringWithFormat:@"%@",hello]];
     
     //滑动时不进行调用
     if(!_testTable.isDragging) {
@@ -102,7 +117,6 @@
     }
     
     [_testTable reloadData];
-   
     
 }
 
@@ -132,6 +146,50 @@
 }
 
 
+- (void)createCommentsView {
+    if (!commentsView) {
+        
+        commentsView = [[UIView alloc] initWithFrame:CGRectMake(0.0, kWindowH - 40.0, kWindowW, 40.0)];
+        commentsView.backgroundColor = [UIColor whiteColor];
+        
+        commentText = [[UITextField alloc] initWithFrame:CGRectInset(commentsView.bounds, 5.0, 5.0)];
+        commentText.layer.borderColor   = [[UIColor colorWithRed:212.0/255 green:212.0/255 blue:212.0/255 alpha:1.0] CGColor];
+        commentText.layer.borderWidth   = 1.0;
+        commentText.layer.cornerRadius  = 2.0;
+        commentText.layer.masksToBounds = YES;
+        
+        commentText.inputAccessoryView  = commentsView;
+        commentText.backgroundColor     = [UIColor clearColor];
+        commentText.returnKeyType       = UIReturnKeySend;
+        commentText.delegate            = self;
+        commentText.font                = [UIFont systemFontOfSize:15.0];
+        [commentsView addSubview:commentText];
+    }
+    [self.view.window addSubview:commentsView];//添加到window上或者其他视图也行，只要在视图以外就好了
+    [commentText becomeFirstResponder];//让textView成为第一响应者（第一次）这次键盘并未显示出来，（个人觉得这里主要是将commentsView设置为commentText的inputAccessoryView,然后再给一次焦点就能成功显示）
+}
+
+- (void)showCommentText {
+    [self createCommentsView];
+    [commentText becomeFirstResponder];//再次让textView成为第一响应者（第二次）这次键盘才成功显示
+}
+
+- (void)handleClickComment:(UIButton *)sender {
+    //这里是为了防止连续点击
+    sender.userInteractionEnabled = NO;
+    [sender performSelector:@selector(setUserInteractionEnabled:) withObject:@YES afterDelay:1];
+    [self showCommentText];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    hello = commentText.text;
+    NSLog(@"%@",hello);
+    [self add];
+    return YES;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

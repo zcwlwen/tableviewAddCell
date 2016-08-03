@@ -13,9 +13,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        //        self.contentView.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:self.cellBackGroundImage];
         [self.contentView addSubview:self.cellAvatorImage];
         [self.contentView addSubview:self.barrageText];
