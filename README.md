@@ -21,3 +21,15 @@
     }
 ```
 ![屏幕快照 2016-07-29 上午10.41.50.png](http://ww3.sinaimg.cn/large/72f96cbagw1f6ame1j9jgj20pm17macq.jpg)
+
+##2016.08.03更新
+**实现点击button弹出键盘**
+
+需求为点击发送按钮弹出键盘，并且键盘上有一个TextFiled用来显示你的输入。点击发送按钮发送当前的内容。并且键盘与TextFiled消失。
+
+实现如下：
+
+![屏幕快照 2016-08-03 下午5.01.02.png](http://ww4.sinaimg.cn/large/006tKfTcgw1f6gnzcci0ej30hw0vgwg9.jpg)
+
+![屏幕快照 2016-08-03 下午5.00.49.png](http://ww3.sinaimg.cn/large/006tKfTcgw1f6gnzbteo0j30hq0vm76t.jpg)
+
