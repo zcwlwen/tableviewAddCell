@@ -35,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.layer.masksToBounds = YES;
+    self.view.layer.cornerRadius = 10;
     index = 3;
      _dataArray1=[[NSMutableArray alloc]initWithObjects:@"1",@"2", nil];
     self.view.backgroundColor = [UIColor lightGrayColor];
@@ -71,6 +73,7 @@
     textViewBtn.backgroundColor = [UIColor darkGrayColor];
     textViewBtn.tintColor = [UIColor whiteColor];
     [self.view addSubview:textViewBtn];
+    
     // 点赞
     UIButton * heartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     heartBtn.frame = CGRectMake(36, [UIScreen mainScreen].bounds.size.height - 36 - 10, 36, 36);
@@ -151,7 +154,7 @@
         
         commentsView = [[UIView alloc] initWithFrame:CGRectMake(0.0, kWindowH - 40.0, kWindowW, 40.0)];
         commentsView.backgroundColor = [UIColor whiteColor];
-        
+    
         commentText = [[UITextField alloc] initWithFrame:CGRectInset(commentsView.bounds, 5.0, 5.0)];
         commentText.layer.borderColor   = [[UIColor colorWithRed:212.0/255 green:212.0/255 blue:212.0/255 alpha:1.0] CGColor];
         commentText.layer.borderWidth   = 1.0;
@@ -182,7 +185,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
     [textField resignFirstResponder];
     hello = commentText.text;
     commentText.text = @"";
